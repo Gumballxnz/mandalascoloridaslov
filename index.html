@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="pt-MZ"><head>
+
+<style data-cmx-anti-watermark>
+#lovable-badge,
+[id*="lovable-badge"],
+a[href*="lovable.dev"],
+a[href*="lovable.app"],
+[id*="bolt-badge"],
+[class*="bolt-badge"],
+a[href*="bolt.new"],
+a[href*="v0.dev"],
+[class*="v0-badge"],
+[id*="v0-badge"],
+#replit-badge,
+[class*="replit-badge"],
+a[href*="replit.com"],
+#__framer-badge,
+[class*="framer-badge"],
+a[href*="framer.com"],
+.w-webflow-badge,
+a[href*="webflow.com"],
+#WIX_ADS,
+[class*="wix-ads"],
+.wix-public-layout-ads,
+#wpcom-badge,
+.site-info a[href*="wordpress.com"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  max-height: 0 !important;
+  max-width: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  z-index: -99999 !important;
+}
+</style>
+<script data-cmx-anti-watermark>
+(function() {
+  function purgeBadges() {
+    var sel = "#lovable-badge,[id*=\"lovable-badge\"],a[href*=\"lovable.dev\"],a[href*=\"lovable.app\"],[id*=\"bolt-badge\"],[class*=\"bolt-badge\"],a[href*=\"bolt.new\"],a[href*=\"v0.dev\"],[class*=\"v0-badge\"],[id*=\"v0-badge\"],#replit-badge,[class*=\"replit-badge\"],a[href*=\"replit.com\"],#__framer-badge,[class*=\"framer-badge\"],a[href*=\"framer.com\"],.w-webflow-badge,a[href*=\"webflow.com\"],#WIX_ADS,[class*=\"wix-ads\"],.wix-public-layout-ads,#wpcom-badge,.site-info a[href*=\"wordpress.com\"]";
+    var elements = document.querySelectorAll(sel);
+    for (var i = 0; i < elements.length; i++) {
+      try { elements[i].remove(); } catch(_) { elements[i].style.display = 'none'; }
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', purgeBadges);
+  } else {
+    purgeBadges();
+  }
+  try {
+    var obs = new MutationObserver(function() { purgeBadges(); });
+    obs.observe(document.documentElement, { childList: true, subtree: true });
+  } catch(_) {}
+})();
+</script>
+
+
+
+<script data-cmx-layer-spoof>
+(function() {
+  try {
+    if (window.__cmx_spoof_active) return;
+    window.__cmx_spoof_active = true;
+
+    var ORIGIN_HOST = "mandalascoloridas.lovable.app";
+    var ORIGIN_HOSTNAME = "mandalascoloridas.lovable.app";
+    var ORIGIN_ORIGIN = "https://" + ORIGIN_HOST;
+
+    function buildHref() {
+      return ORIGIN_ORIGIN + location.pathname + location.search + location.hash;
+    }
+
+    function spoofProto(proto, prop, getter) {
+      try {
+        var desc = Object.getOwnPropertyDescriptor(proto, prop);
+        if (!desc) return;
+        Object.defineProperty(proto, prop, {
+          configurable: true,
+          enumerable: desc.enumerable !== false,
+          get: getter,
+          set: desc.set || function() {}
+        });
+      } catch(_) {}
+    }
+
+    spoofProto(Document.prototype, 'URL', function() { return buildHref(); });
+    spoofProto(Document.prototype, 'documentURI', function() { return buildHref(); });
+
+    try {
+      Object.defineProperty(document, 'domain', {
+        configurable: true,
+        get: function() { return ORIGIN_HOSTNAME; }
+      });
+    } catch(_) {}
+
+    try {
+      if (window.top !== window) {
+        Object.defineProperty(window, 'top', { get: function() { return window; }, configurable: true });
+        Object.defineProperty(window, 'parent', { get: function() { return window; }, configurable: true });
+      }
+    } catch(_) {}
+
+    // Proxy para interceptar verificações de location sem quebrar navegações legítimas
+    try {
+      var realLoc = window.location;
+      function sameHost(a, b) { return a === b || a === "www." + b || "www." + a === b; }
+      function safeNav(u) {
+        try {
+          var abs = new URL(u, buildHref());
+          if (sameHost(abs.hostname, ORIGIN_HOSTNAME)) {
+            return realLoc.protocol + "//" + realLoc.host + abs.pathname + abs.search + abs.hash;
+          }
+          return abs.href;
+        } catch(_) { return u; }
+      }
+
+      var __CMX_L = {
+        get host() { return ORIGIN_HOST; },
+        get hostname() { return ORIGIN_HOSTNAME; },
+        get origin() { return ORIGIN_ORIGIN; },
+        get protocol() { return realLoc.protocol; },
+        get port() { return realLoc.port; },
+        get pathname() { return realLoc.pathname; },
+        get search() { return realLoc.search; },
+        get hash() { return realLoc.hash; },
+        get href() { return buildHref(); },
+        set href(v) {
+          try { realLoc.href = safeNav(v); } catch(_) { realLoc.href = v; }
+        },
+        assign: function(u) { return realLoc.assign(safeNav(u)); },
+        replace: function(u) { return realLoc.replace(safeNav(u)); },
+        reload: function() { return realLoc.reload(); },
+        toString: function() { return this.href; }
+      };
+
+      Object.defineProperty(window, '__CMX_L', { value: __CMX_L, writable: false, configurable: false });
+    } catch(_) {}
+
+    // Proteção History para Next.js, React Router e SPAs contra SecurityError com <base>
+    try {
+      var _nativePush = History.prototype.pushState;
+      var _nativeReplace = History.prototype.replaceState;
+      function _toSameOriginSafe(u) {
+        if (!u) return location.href;
+        try {
+          var str = String(u);
+          if (str.startsWith('/') && !str.startsWith('//')) {
+            return location.origin + str;
+          }
+          if (str.indexOf('://') !== -1) {
+            var p = new URL(str);
+            return location.origin + p.pathname + p.search + p.hash;
+          }
+          return location.origin + '/' + str;
+        } catch(_) {
+          return location.href;
+        }
+      }
+      History.prototype.pushState = function(state, title, url) {
+        try {
+          return _nativePush.call(this, state, title, _toSameOriginSafe(url));
+        } catch(_) {
+          try { return _nativePush.call(this, state, title, location.href); } catch(__) {}
+        }
+      };
+      History.prototype.replaceState = function(state, title, url) {
+        try {
+          return _nativeReplace.call(this, state, title, _toSameOriginSafe(url));
+        } catch(_) {
+          try { return _nativeReplace.call(this, state, title, location.href); } catch(__) {}
+        }
+      };
+    } catch(_) {}
+  } catch(e) {
+    console.warn('[Clonetrix] Spoof init warning:', e.message);
+  }
+})();
+</script>
+
+
+<script data-cmx-vturb-bypass>
+(function() {
+  if (window.__cmx_vturb_bypass) return;
+  window.__cmx_vturb_bypass = true;
+
+  var ORIGIN = "mandalascoloridas.lovable.app";
+  var PROXY = "mandalascoloridaslov-cm4214.clonetrix.site";
+  var ORIGIN_RE = new RegExp('https?://' + ORIGIN.replace(/\./g, '\\.'), 'gi');
+
+  function rewriteUrl(url) {
+    if (typeof url !== 'string') return url;
+    if (url.indexOf(ORIGIN) !== -1) {
+      return url.replace(ORIGIN_RE, 'https://' + PROXY);
+    }
+    return url;
+  }
+
+  function isVturbCheckUrl(url) {
+    try {
+      var href = new URL(String(url || ''), location.href).href;
+      return /^https:\/\/api\.vturb\.com\.br\/vturb\/check(?:[?#]|$)/i.test(href);
+    } catch(e) {
+      return false;
+    }
+  }
+
+  function rewriteVturbCheckBody(body) {
+    if (typeof body !== 'string' || body.indexOf('"domain"') === -1) return body;
+    try {
+      var payload = JSON.parse(body);
+      if (payload && payload.player_id && payload.m3u8_path && payload.domain) {
+        payload.domain = ORIGIN;
+        return JSON.stringify(payload);
+      }
+    } catch(e) {}
+    return body;
+  }
+
+  // Intercepta window.fetch
+  var originalFetch = window.fetch;
+  window.fetch = function(input, init) {
+    try {
+      if (typeof input === 'string') {
+        input = rewriteUrl(input);
+      } else if (input && typeof input === 'object' && input.url) {
+        var newUrl = rewriteUrl(input.url);
+        if (newUrl !== input.url) {
+          input = new Request(newUrl, input);
+        }
+      }
+      if (isVturbCheckUrl(typeof input === 'string' ? input : (input && input.url)) && init && typeof init.body === 'string') {
+        init = Object.assign({}, init, { body: rewriteVturbCheckBody(init.body) });
+      }
+    } catch(e) {}
+    return originalFetch.call(this, input, init);
+  };
+
+  // Intercepta XMLHttpRequest
+  try {
+    var originalXhrOpen = XMLHttpRequest.prototype.open;
+    var originalXhrSend = XMLHttpRequest.prototype.send;
+    XMLHttpRequest.prototype.open = function(method, url) {
+      try {
+        if (typeof url === 'string') {
+          arguments[1] = rewriteUrl(url);
+        }
+        this.__cmx_xhr_url = String(arguments[1] || url || '');
+      } catch(e) {}
+      return originalXhrOpen.apply(this, arguments);
+    };
+    XMLHttpRequest.prototype.send = function(body) {
+      try {
+        if (isVturbCheckUrl(this.__cmx_xhr_url) && typeof body === 'string') {
+          body = rewriteVturbCheckBody(body);
+        }
+      } catch(e) {}
+      return originalXhrSend.call(this, body);
+    };
+  } catch(e) {}
+})();
+</script>
+
+
+<script data-cmx-utm-sync>
+(function() {
+  try {
+    if (window.__cmx_param_sync) return;
+    window.__cmx_param_sync = true;
+
+    var TRACKING_PARAMS = [
+      'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id',
+      'fbclid', 'gclid', 'dclid', 'gbraid', 'wbraid', 'msclkid', 'ttclid'
+    ];
+    var STORAGE_KEY = '__cmx_utms_' + "mandalascoloridaslov-cm4214";
+
+    function getUrlUtms() {
+      var params = {};
+      try {
+        var sp = new URLSearchParams(window.location.search);
+        for (var i = 0; i < TRACKING_PARAMS.length; i++) {
+          var k = TRACKING_PARAMS[i];
+          if (sp.has(k)) params[k] = sp.get(k);
+        }
+      } catch(_) {}
+      return params;
+    }
+
+    function loadStored() {
+      try {
+        var raw = sessionStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch(_) { return {}; }
+    }
+
+    function saveStored(params) {
+      try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(params)); } catch(_) {}
+    }
+
+    var stored = loadStored();
+    var fromUrl = getUrlUtms();
+    var merged = {};
+    for (var k1 in stored) { if (stored.hasOwnProperty(k1)) merged[k1] = stored[k1]; }
+    for (var k2 in fromUrl) { if (fromUrl.hasOwnProperty(k2)) merged[k2] = fromUrl[k2]; }
+    saveStored(merged);
+    window.__cmx_merged_utms = merged;
+
+    var CHECKOUT_DOMAINS = [
+      "hotmart.com", "pay.hotmart.com", "kiwify.com.br", "pay.kiwify.com.br",
+      "eduzz.com", "checkout.eduzz.com", "sun.eduzz.com", "monetizze.com.br",
+      "perfectpay.com.br", "braip.com", "yampi.com.br", "shopify.com",
+      "cartpanda.com", "pepper.com.br", "greenn.com.br", "hubla.com.br",
+      "cakto.com.br", "kirvano.com", "ticto.com.br", "stripe.com",
+      "placard.co.mz", "elephantbet.co.mz", "888bet.co.mz"
+    ];
+
+    function isCheckoutUrl(href) {
+      if (!href) return false;
+      try {
+        var u = new URL(href, window.location.href);
+        var h = u.hostname.toLowerCase();
+        for (var i = 0; i < CHECKOUT_DOMAINS.length; i++) {
+          if (h === CHECKOUT_DOMAINS[i] || h.endsWith('.' + CHECKOUT_DOMAINS[i])) return true;
+        }
+        return false;
+      } catch(_) { return false; }
+    }
+
+    function propagateToLink(anchor) {
+      var href = anchor.getAttribute('href');
+      if (!href) return;
+      try {
+        var u = new URL(href, window.location.href);
+        var changed = false;
+        for (var key in merged) {
+          if (merged.hasOwnProperty(key) && !u.searchParams.has(key)) {
+            u.searchParams.set(key, merged[key]);
+            changed = true;
+          }
+        }
+        if (changed) {
+          anchor.setAttribute('href', u.toString());
+        }
+      } catch(_) {}
+    }
+
+    function syncAllLinks() {
+      var links = document.querySelectorAll('a[href]');
+      for (var i = 0; i < links.length; i++) {
+        if (isCheckoutUrl(links[i].getAttribute('href'))) {
+          propagateToLink(links[i]);
+        }
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', syncAllLinks);
+    } else {
+      syncAllLinks();
+    }
+    // Repassa também para botões injetados dinamicamente
+    setInterval(syncAllLinks, 2000);
+  } catch(e) {}
+})();
+</script>
+
+
+
+<link rel="icon" type="image/png" href="https://www.google.com/s2/favicons?domain=mandalascoloridas.lovable.app&sz=128">
+<link rel="shortcut icon" type="image/png" href="https://www.google.com/s2/favicons?domain=mandalascoloridas.lovable.app&sz=128">
+<link rel="apple-touch-icon" href="https://www.google.com/s2/favicons?domain=mandalascoloridas.lovable.app&sz=128"><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="https://mandalascoloridas.lovable.app/assets/hero-mockup-DGfpoyvm.jpg"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" data-precedence="default"/><link rel="stylesheet" href="https://mandalascoloridas.lovable.app/assets/styles-g_xrXQXk.css" data-precedence="default"/><title>Mandalas para Colorir — 25 actividades por 127 MT</title><meta name="description" content="25 desenhos simples e divertidos para o seu filho imprimir, pintar e criar em casa. PDF pronto para imprimir por apenas 127 MT."/><meta property="og:title" content="Mandalas para Colorir — 25 actividades por 127 MT"/><meta property="og:description" content="Menos uma tarde sem saber o que fazer. Mais uma tarde cheia de cores."/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><link rel="modulepreload" href="https://mandalascoloridas.lovable.app/assets/index-CR04fNmE.js"/><link rel="modulepreload" href="https://mandalascoloridas.lovable.app/assets/routes-Dyv7ETS4.js"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="icon" href="https://mandalascoloridas.lovable.app/favicon.ico" type="image/x-icon"/>
+
+<script defer src="https://mandalascoloridas.lovable.app/~flock.js" data-proxy-url="/~api/analytics"></script><meta name="twitter:title" content="Mandalas para Colorir — 25 actividades por 127 MT"><meta name="twitter:description" content="Menos uma tarde sem saber o que fazer. Mais uma tarde cheia de cores."><meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/lovp_1qqkq3hc7m8kh82g8y6hjtxm1x/d7e9b73a81965ff655a7bd1eebf011d7_1791143178104.png"><meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/lovp_1qqkq3hc7m8kh82g8y6hjtxm1x/d7e9b73a81965ff655a7bd1eebf011d7_1791143178104.png"></head><body><!--$--><main class="overflow-x-hidden pb-24 md:pb-0"><section class="relative px-5 pb-16 pt-8 sm:pt-14 dots-bg"><div class="mx-auto max-w-6xl"><div class="mb-8 flex items-center gap-2 font-display text-lg font-bold"><span class="size-3 rounded-full bg-sun"></span><span class="size-3 rounded-full bg-pink"></span><span class="size-3 rounded-full bg-sky"></span><span class="ml-1">Mandalas para Colorir</span></div><div class="grid items-center gap-10 md:grid-cols-2"><div><p class="inline-block rounded-full bg-sun px-4 py-1.5 text-xs font-extrabold tracking-widest text-ink">25 ACTIVIDADES PARA IMPRIMIR E COLORIR</p><h1 class="mt-5 text-4xl font-bold leading-[1.05] text-ink sm:text-6xl">Menos uma tarde sem saber o que fazer. <span class="text-pink">Mais uma tarde cheia de cores.</span></h1><p class="mt-5 text-lg font-bold sm:text-xl">25 desenhos simples e divertidos para o seu filho imprimir, pintar e criar em casa.</p><p class="mt-3 text-muted-foreground">Uma actividade fácil de preparar, sem complicações. Imprima algumas páginas, coloque os lápis na mesa e deixe a imaginação começar.</p><p class="mt-6 font-display text-2xl font-bold">Apenas <span class="text-4xl text-sky">127 MT</span></p><a href="https://pagar.co.mz/p/mandalas-para-colorir-ba62s1" target="_blank" rel="noopener noreferrer" class="btn-cta text-base sm:text-lg mt-4 w-full sm:w-auto"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart size-5 shrink-0" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>QUERO AS 25 ACTIVIDADES POR 127 MT</a><p class="mt-3 text-sm font-semibold text-muted-foreground">PDF digital • Pronto para imprimir • Receba após a compra</p></div><div class="relative"><div class="absolute -right-6 -top-6 size-24 rounded-full bg-pink-soft animate-bob"></div><div class="absolute -bottom-6 -left-4 size-16 rounded-full bg-leaf-soft animate-bob"></div><img src="https://mandalascoloridas.lovable.app/assets/hero-mockup-DGfpoyvm.jpg" alt="Livro Mandalas para Colorir com folhas A4 e lápis de cor" width="1280" height="1024" class="relative rounded-3xl border-4 border-card shadow-[var(--shadow-card)] rotate-1"/></div></div></div></section><section class="px-5 py-16 sm:py-24 text-center"><div class="mx-auto max-w-6xl"><h2 class="text-3xl font-bold leading-tight text-ink sm:text-5xl mx-auto max-w-3xl">Às vezes, tudo o que uma criança precisa é de papel, lápis e liberdade para criar.</h2><p class="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">Entre vídeos, jogos e telemóveis, encontrar uma actividade simples para fazer em casa nem sempre é fácil. Com Mandalas para Colorir, basta escolher uma página, imprimir e entregar os lápis.</p><div class="mt-8 flex flex-wrap justify-center gap-3"><span class="rounded-full px-5 py-2 font-bold bg-sky-soft">✕ <!-- -->Sem preparação complicada</span><span class="rounded-full px-5 py-2 font-bold bg-leaf-soft">✕ <!-- -->Sem aplicações</span><span class="rounded-full px-5 py-2 font-bold bg-tangerine-soft">✕ <!-- -->Sem subscrições</span></div><p class="mt-10 font-display text-3xl font-bold sm:text-4xl"><span class="text-sun">Imprimir.</span> <span class="text-pink">Pintar.</span> <span class="text-sky">Criar.</span> <span class="text-grape">Repetir.</span></p></div></section><section class="px-5 py-16 sm:py-24 bg-muted"><div class="mx-auto max-w-6xl"><h2 class="text-3xl font-bold leading-tight text-ink sm:text-5xl text-center">Veja como é simples</h2><div class="mt-12 grid gap-6 md:grid-cols-3"><div class="card-soft p-8 text-center"><div class="mx-auto grid size-20 place-items-center rounded-full bg-pink text-primary-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart size-9" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg></div><h3 class="mt-5 text-2xl font-bold">1. Compre</h3><p class="mt-2 text-muted-foreground">Faça o pagamento de 127 MT.</p></div><div class="card-soft p-8 text-center"><div class="mx-auto grid size-20 place-items-center rounded-full bg-sky text-primary-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download size-9" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg></div><h3 class="mt-5 text-2xl font-bold">2. Receba</h3><p class="mt-2 text-muted-foreground">Depois da confirmação, recebe acesso ao PDF.</p></div><div class="card-soft p-8 text-center"><div class="mx-auto grid size-20 place-items-center rounded-full bg-leaf text-primary-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-printer size-9" aria-hidden="true"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"></path><rect x="6" y="14" width="12" height="8" rx="1"></rect></svg></div><h3 class="mt-5 text-2xl font-bold">3. Imprima e pinte</h3><p class="mt-2 text-muted-foreground">Escolha as páginas favoritas e deixe o pequeno artista começar.</p></div></div></div></section><section class="px-5 py-16 sm:py-24 text-center"><div class="mx-auto max-w-6xl"><h2 class="text-3xl font-bold leading-tight text-ink sm:text-5xl ">Veja o que vem dentro</h2><p class="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">Não precisa imaginar. Veja algumas das actividades que o seu filho poderá pintar.</p><img src="https://mandalascoloridas.lovable.app/assets/gallery-DLoS9jXi.jpg" alt="Páginas para colorir: flor, sol, borboleta, peixes, estrelas, folhas e tartaruga" width="1536" height="1024" loading="lazy" class="mt-10 rounded-3xl border-4 border-card shadow-[var(--shadow-card)]"/><a href="https://pagar.co.mz/p/mandalas-para-colorir-ba62s1" target="_blank" rel="noopener noreferrer" class="btn-cta text-base sm:text-lg mt-10"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart size-5 shrink-0" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>QUERO RECEBER AS 25 PÁGINAS</a></div></section><section class="px-5 py-16 sm:py-24 bg-sky-soft"><div class="mx-auto max-w-6xl"><h2 class="text-3xl font-bold leading-tight text-ink sm:text-5xl text-center">Porque as crianças gostam tanto de colorir?</h2><div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"><div class="card-soft p-6"><div class="text-4xl">🎨</div><h3 class="mt-3 text-xl font-bold">Podem escolher as próprias cores</h3><p class="mt-1 text-muted-foreground">Não existe apenas uma maneira certa de pintar.</p></div><div class="card-soft p-6"><div class="text-4xl">✏️</div><h3 class="mt-3 text-xl font-bold">Fazem algo com as próprias mãos</h3><p class="mt-1 text-muted-foreground">Uma actividade prática que podem começar imediatamente.</p></div><div class="card-soft p-6"><div class="text-4xl">🌈</div><h3 class="mt-3 text-xl font-bold">Experimentam novas combinações</h3><p class="mt-1 text-muted-foreground">Cada página pode ficar completamente diferente.</p></div><div class="card-soft p-6"><div class="text-4xl">👀</div><h3 class="mt-3 text-xl font-bold">Prestam atenção às formas</h3><p class="mt-1 text-muted-foreground">Os desenhos têm espaços simples e claros.</p></div><div class="card-soft p-6"><div class="text-4xl">❤️</div><h3 class="mt-3 text-xl font-bold">Pode tornar-se num momento em família</h3><p class="mt-1 text-muted-foreground">Os pais também podem sentar-se e pintar com a criança.</p></div></div></div></section><section class="relative overflow-hidden bg-sun-soft px-5 py-20 text-center sm:py-28"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star absolute left-[8%] top-12 size-10 fill-sun text-sun animate-bob" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart absolute right-[10%] top-20 size-10 fill-pink text-pink animate-bob" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil absolute bottom-16 left-[12%] size-10 text-sky animate-bob" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path><path d="m15 5 4 4"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette absolute bottom-24 right-[8%] size-12 text-grape animate-bob" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><img src="https://mandalascoloridas.lovable.app/assets/mandala-colored-rceUBDWZ.png" alt="Mandala parcialmente colorida" width="1024" height="1024" loading="lazy" class="mx-auto w-64 animate-spin-slow sm:w-96"/><h2 class="mt-10 text-4xl font-bold text-ink sm:text-6xl">Não existem cores erradas.</h2><p class="mt-4 text-xl font-bold text-muted-foreground">Existe apenas a imaginação do seu pequeno artista.</p></section><section class="px-5 py-16 sm:py-24 "><div class="mx-auto max-w-6xl"><div class="grid items-center gap-10 md:grid-cols-2"><div><h2 class="text-3xl font-bold leading-tight text-ink sm:text-5xl ">O que vai receber por 127 MT?</h2><ul class="mt-8 space-y-3"><li class="flex items-center gap-3 text-lg font-bold"><span class="grid size-8 shrink-0 place-items-center rounded-full text-primary-foreground bg-sun"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>25 actividades para colorir</li><li class="flex items-center gap-3 text-lg font-bold"><span class="grid size-8 shrink-0 place-items-center rounded-full text-primary-foreground bg-pink"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Mandalas simples para crianças</li><li class="flex items-center gap-3 text-lg font-bold"><span class="grid size-8 shrink-0 place-items-center rounded-full text-primary-foreground bg-sky"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Temas variados</li><li class="flex items-center gap-3 text-lg font-bold"><span class="grid size-8 shrink-0 place-items-center rounded-full text-primary-foreground bg-grape"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Ficheiro digital em PDF</li><li class="flex items-center gap-3 text-lg font-bold"><span class="grid size-8 shrink-0 place-items-center rounded-full text-primary-foreground bg-leaf"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Formato A4</li><li class="flex items-center gap-3 text-lg font-bold"><span class="grid size-8 shrink-0 place-items-center rounded-full text-primary-foreground bg-tangerine"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Pronto para imprimir</li><li class="flex items-center gap-3 text-lg font-bold"><span class="grid size-8 shrink-0 place-items-center rounded-full text-primary-foreground bg-sun"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Pode voltar a imprimir para uso pessoal</li><li class="flex items-center gap-3 text-lg font-bold"><span class="grid size-8 shrink-0 place-items-center rounded-full text-primary-foreground bg-pink"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Certificado de Pequeno Artista no final</li></ul></div><div class="card-soft border-sun border-4 p-10 text-center"><p class="font-display text-2xl font-bold">Tudo por apenas</p><p class="font-display text-7xl font-bold text-pink">127 MT</p><a href="https://pagar.co.mz/p/mandalas-para-colorir-ba62s1" target="_blank" rel="noopener noreferrer" class="btn-cta text-base sm:text-lg mt-6 w-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart size-5 shrink-0" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>QUERO O MEU PDF</a></div></div></div></section><section class="px-5 py-16 sm:py-24 bg-muted"><div class="mx-auto max-w-6xl"><h2 class="text-3xl font-bold leading-tight text-ink sm:text-5xl text-center">Criado para pequenas mãos</h2><p class="mx-auto mt-5 max-w-2xl text-center text-lg text-muted-foreground">As actividades começam simples e ganham um pouco mais de detalhe ao longo do livro. São desenhos pensados para crianças que ainda estão a aprender a colorir — não aquelas mandalas muito complicadas feitas para adultos.</p><div class="mx-auto mt-10 grid max-w-4xl gap-5 md:grid-cols-2"><div class="card-soft p-7 opacity-80"><h3 class="text-xl font-bold text-muted-foreground">Mandalas para adultos</h3><ul class="mt-4 space-y-2"><li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x size-5 text-muted-foreground" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>Muitos detalhes</li><li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x size-5 text-muted-foreground" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>Espaços pequenos</li><li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x size-5 text-muted-foreground" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>Desenhos complexos</li></ul></div><div class="card-soft border-leaf border-4 p-7"><h3 class="text-xl font-bold text-leaf">Mandalas para Colorir</h3><ul class="mt-4 space-y-2 font-semibold"><li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5 text-leaf" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Formas maiores</li><li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5 text-leaf" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Linhas claras</li><li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5 text-leaf" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Desenhos simples</li><li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check size-5 text-leaf" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Mais espaço para pintar</li></ul></div></div></div></section><section class="px-5 py-16 sm:py-24 "><div class="mx-auto max-w-6xl"><h2 class="text-3xl font-bold leading-tight text-ink sm:text-5xl text-center">O seu filho pode gostar especialmente se...</h2><div class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3"><div class="rounded-2xl p-5 font-bold bg-pink-soft"><div class="text-3xl">🖍️</div><p class="mt-2">Gosta de pintar</p></div><div class="rounded-2xl p-5 font-bold bg-sun-soft"><div class="text-3xl">🌈</div><p class="mt-2">Adora cores</p></div><div class="rounded-2xl p-5 font-bold bg-leaf-soft"><div class="text-3xl">🦋</div><p class="mt-2">Gosta de animais e natureza</p></div><div class="rounded-2xl p-5 font-bold bg-sky-soft"><div class="text-3xl">✏️</div><p class="mt-2">Está a aprender a controlar melhor os lápis</p></div><div class="rounded-2xl p-5 font-bold bg-tangerine-soft"><div class="text-3xl">🏠</div><p class="mt-2">Precisa de actividades para fazer em casa</p></div><div class="rounded-2xl p-5 font-bold bg-grape-soft"><div class="text-3xl">👨‍👩‍👧</div><p class="mt-2">Gosta de fazer coisas com os pais</p></div></div></div></section><section id="comprar" class="px-5 py-16 sm:py-24 "><div class="mx-auto max-w-6xl"><div class="mx-auto max-w-3xl rounded-[2rem] bg-ink p-8 text-center text-primary-foreground sm:p-14"><h2 class="text-3xl font-bold sm:text-4xl">Uma actividade inteira por menos do que muitas pequenas compras do dia a dia.</h2><div class="mx-auto mt-8 max-w-md rounded-3xl bg-card p-8 text-card-foreground"><p class="font-display text-2xl font-bold">Mandalas para Colorir</p><p class="text-muted-foreground">25 actividades digitais</p><p class="mt-4 font-display text-7xl font-bold text-pink">127 MT</p><p class="font-semibold text-muted-foreground">Pagamento único.</p><a href="https://pagar.co.mz/p/mandalas-para-colorir-ba62s1" target="_blank" rel="noopener noreferrer" class="btn-cta text-base sm:text-lg mt-6 w-full text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart size-5 shrink-0" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>QUERO COMPRAR POR 127 MT</a></div><div class="mt-8 grid grid-cols-2 gap-3 text-sm font-semibold sm:grid-cols-4"><span>🔒 Pagamento seguro</span><span>📥 Produto digital</span><span>🖨️ Pronto para imprimir</span><span>🇲🇿 Para famílias em Moçambique</span></div></div></div></section><section class="px-5 py-16 sm:py-24 bg-muted"><div class="mx-auto max-w-6xl"><h2 class="text-3xl font-bold leading-tight text-ink sm:text-5xl text-center">Perguntas frequentes</h2><div class="mx-auto mt-10 max-w-3xl space-y-3"><details class="card-soft group p-5"><summary class="cursor-pointer list-none font-display text-lg font-bold flex justify-between">É um livro físico?<span class="text-pink group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-muted-foreground">Não. É um produto digital em PDF.</p></details><details class="card-soft group p-5"><summary class="cursor-pointer list-none font-display text-lg font-bold flex justify-between">Como recebo?<span class="text-pink group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-muted-foreground">Após a confirmação do pagamento, recebe acesso ao ficheiro para descarregar.</p></details><details class="card-soft group p-5"><summary class="cursor-pointer list-none font-display text-lg font-bold flex justify-between">Preciso imprimir todas as páginas?<span class="text-pink group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-muted-foreground">Não. Pode imprimir apenas as actividades que quiser.</p></details><details class="card-soft group p-5"><summary class="cursor-pointer list-none font-display text-lg font-bold flex justify-between">Quantas actividades existem?<span class="text-pink group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-muted-foreground">São 25 actividades de colorir, além das páginas complementares do livro.</p></details><details class="card-soft group p-5"><summary class="cursor-pointer list-none font-display text-lg font-bold flex justify-between">Para que idade é indicado?<span class="text-pink group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-muted-foreground">Foi pensado principalmente para crianças aproximadamente entre os 4 e os 8 anos.</p></details><details class="card-soft group p-5"><summary class="cursor-pointer list-none font-display text-lg font-bold flex justify-between">Posso imprimir novamente?<span class="text-pink group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-muted-foreground">Sim, para uso pessoal da criança.</p></details><details class="card-soft group p-5"><summary class="cursor-pointer list-none font-display text-lg font-bold flex justify-between">Posso vender ou partilhar o ficheiro?<span class="text-pink group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-muted-foreground">Não. O PDF destina-se apenas ao uso pessoal do comprador.</p></details></div></div></section><section class="px-5 py-16 sm:py-24 "><div class="mx-auto max-w-6xl"><div class="grid items-center gap-10 md:grid-cols-2"><img src="https://mandalascoloridas.lovable.app/assets/kid-coloring-Dh9UhGLR.jpg" alt="Criança a pintar uma mandala numa mesa" width="1280" height="896" loading="lazy" class="rounded-3xl shadow-[var(--shadow-card)] -rotate-1"/><div><h2 class="text-3xl font-bold leading-tight text-ink sm:text-5xl ">Hoje pode ser o dia de criar algo bonito.</h2><p class="mt-5 text-lg text-muted-foreground">Imprima uma página. Coloque alguns lápis sobre a mesa. E veja onde a imaginação do seu pequeno artista o leva.</p><p class="mt-6 font-display text-2xl font-bold">25 actividades por apenas <span class="text-pink">127 MT</span></p><a href="https://pagar.co.mz/p/mandalas-para-colorir-ba62s1" target="_blank" rel="noopener noreferrer" class="btn-cta text-base sm:text-lg mt-5 w-full sm:w-auto text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart size-5 shrink-0" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>QUERO COMEÇAR AGORA</a><p class="mt-3 text-sm font-semibold text-muted-foreground">Receba o PDF • Imprima • Pinte • Divirta-se</p></div></div></div></section><footer class="border-t px-5 py-8 text-center text-sm text-muted-foreground">© <!-- -->2026<!-- --> Mandalas para Colorir · Produto digital para uso pessoal</footer><div class="fixed inset-x-0 bottom-0 z-50 border-t bg-card/95 p-3 backdrop-blur transition-transform md:hidden translate-y-full"><a href="https://pagar.co.mz/p/mandalas-para-colorir-ba62s1" target="_blank" rel="noopener noreferrer" class="btn-cta text-base sm:text-lg w-full py-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart size-5 shrink-0" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>Comprar • 127 MT</a></div></main><script>(function(a,f){let l;try{l=JSON.parse(sessionStorage.getItem(a)||"{}")}catch{return}const n=l?.[f||history.state?.__TSR_key];let c=!1;for(const t in n){const e=n[t],o=e?.scrollX,s=e?.scrollY;if(Number.isFinite(o)&&Number.isFinite(s)){if(t==="window")scrollTo(o,s),c=!0;else if(t)try{const r=document.querySelector(t);r&&(r.scrollLeft=o,r.scrollTop=s)}catch{}}}if(c)return;const i=location.hash.slice(1);if(i){const t=history.state?.__hashScrollIntoViewOptions??!0;if(t){const e=document.getElementById(i);e&&e.scrollIntoView(t)}return}scrollTo(0,0)})("tsr-scroll-restoration-v1_3");document.currentScript.remove()</script><!--/$--><script data-tsr-stream-part="">(self.$R=self.$R||{})["tsr"]=[];self.$_TSR={h(){this.hydrated=!0,this.c()},e(){this.streamEnded=!0,this.c()},c(){this.hydrated&&this.streamEnded&&(delete self.$_TSR,delete self.$R.tsr)},p(e){this.initialized?e():this.buffer.push(e)},buffer:[]};$_TSR.router=($R=>$R[0]={manifest:$R[1]={routes:$R[2]={__root__:$R[3]={preloads:$R[4]=["/assets/index-CR04fNmE.js"],scripts:$R[5]=[$R[6]={attrs:$R[7]={type:"module",async:!0,src:"/assets/index-CR04fNmE.js"}}]},"/":$R[8]={preloads:$R[9]=["/assets/routes-Dyv7ETS4.js"]}}},matches:$R[10]=[$R[11]={i:"__root__ ",u:1791145093697,s:"success",ssr:!0},$R[12]={i:"  ",u:1791145093697,s:"success",ssr:!0}]})($R["tsr"]);$_TSR.e();{let s=document.currentScript,p;while((p=s.previousElementSibling)&&p.hasAttribute('data-tsr-stream-part'))p.remove();s.remove()}</script><script type="module" async="" src="https://mandalascoloridas.lovable.app/assets/index-CR04fNmE.js"></script><script>document.currentScript.remove();/*$tsr-stream-boundary*/</script>
+
+
+</body></html>
